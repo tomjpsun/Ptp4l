@@ -7,6 +7,7 @@
 #include <QRegularExpression>
 #include <QTextStream>
 #include <QLineSeries>
+#include "MyChartView.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -23,7 +24,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->frame->layout()->addWidget(chartViewy3);
 }
 
-QChartView* MainWindow::initChartView()
+MyChartView* MainWindow::initChartView()
 {
     QChart* chart = new QChart();
     QValueAxis* axisX = new QValueAxis();
@@ -32,7 +33,7 @@ QChartView* MainWindow::initChartView()
     chart->addAxis(axisY,Qt::AlignLeft);
     axisX->setRange(0, 30);
     axisY->setRange(0, 5);
-    QChartView* chartView = new QChartView(this);
+    MyChartView* chartView = new MyChartView(this);
     chartView->setChart(chart);
 
     return chartView;
@@ -123,6 +124,8 @@ void MainWindow::addSeriesToChart(QChartView* chartView, QList<Ptp4Data> &data, 
     chart->removeAllSeries();
     chart->addSeries(series);
     chart->createDefaultAxes();
+    // connect series to clicked signal
+    connect(series, &QLineSeries::clicked, this, &MainWindow::handleClickedPoint);
 }
 
 
@@ -144,3 +147,7 @@ void MainWindow::on_redraw_clicked()
     draw(table);
 }
 
+void MainWindow::handleClickedPoint(const QPointF &point)
+{
+    qDebug() << "clicked point:" << point;
+}
