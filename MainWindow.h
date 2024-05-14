@@ -10,6 +10,15 @@ class MainWindow;
 }
 QT_END_NAMESPACE
 
+
+struct Ptp4Data
+{
+    double x;
+    double y1;
+    double y2;
+    double y3;
+};
+
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
@@ -27,5 +36,6 @@ private:
     QChartView* chartViewy1;
     QChartView* chartViewy2;
     QChartView* chartViewy3;
+    QList<Ptp4Data> table;
 };
 #endif // MAINWINDOW_H

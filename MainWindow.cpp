@@ -5,6 +5,7 @@
 #include <QFileDialog>
 #include <QFile>
 #include <QRegularExpression>
+#include <QTextStream>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -53,11 +54,13 @@ void MainWindow::on_openFile_clicked()
     }
 
     QTextStream in(&file);
+    table.clear();
     while (!in.atEnd())
     {
         QString fileLine = in.readLine();
         searchLine(fileLine);
     }
+    qDebug() << "table size:" << table.size();
     file.close();
 }
 
@@ -73,9 +76,15 @@ void MainWindow::searchLine(QString line)
         QString y2 = match.captured(3);
         QString y3 = match.captured(4);
 
-        qDebug() << "x:" << x
-                 << ", y1:" << y1
-                 << ", y2:" << y2
-                 << ", y3:" << y3;
+        // qDebug() << "x:" << x
+        //          << ", y1:" << y1
+        //          << ", y2:" << y2
+        //          << ", y3:" << y3;
+        Ptp4Data data;
+        data.x = x.toDouble();
+        data.y1 = y1.toDouble();
+        data.y2 = y2.toDouble();
+        data.y3 = y3.toDouble();
+        table.append(data);
     }
 }
