@@ -9,6 +9,7 @@ class MyChartView : public QChartView
     Q_OBJECT
 public:
     MyChartView(QWidget *parent = nullptr): QChartView(parent) {}
+    void handleClickedPoint(const QPointF &point);
 };
 
 #endif // MYCHARTVIEW_H

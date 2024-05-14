@@ -102,7 +102,7 @@ void MainWindow::searchLine(QString line, QList<Ptp4Data> &table)
 }
 
 
-void MainWindow::addSeriesToChart(QChartView* chartView, QList<Ptp4Data> &data, int yIndex)
+void MainWindow::addSeriesToChart(MyChartView* chartView, QList<Ptp4Data> &data, int yIndex)
 {
     QLineSeries *series = new QLineSeries();
 
@@ -125,7 +125,7 @@ void MainWindow::addSeriesToChart(QChartView* chartView, QList<Ptp4Data> &data, 
     chart->addSeries(series);
     chart->createDefaultAxes();
     // connect series to clicked signal
-    connect(series, &QLineSeries::clicked, this, &MainWindow::handleClickedPoint);
+    connect(series, &QLineSeries::clicked, chartView, &MyChartView::handleClickedPoint);
 }
 
 
@@ -147,7 +147,4 @@ void MainWindow::on_redraw_clicked()
     draw(table);
 }
 
-void MainWindow::handleClickedPoint(const QPointF &point)
-{
-    qDebug() << "clicked point:" << point;
-}
+
