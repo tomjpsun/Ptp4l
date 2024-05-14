@@ -18,6 +18,9 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
     QChartView* initChartView();
+private slots:
+    void on_openFile_clicked();
+
 private:
     Ui::MainWindow *ui;
     QChartView* chartViewy1;

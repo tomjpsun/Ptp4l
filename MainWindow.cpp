@@ -2,6 +2,8 @@
 #include "ui_MainWindow.h"
 #include <QValueAxis>
 #include <QLayout>
+#include <QFileDialog>
+#include <QFile>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -37,3 +39,24 @@ MainWindow::~MainWindow()
 {
     delete ui;
 }
+
+void MainWindow::on_openFile_clicked()
+{
+    QString fileName = QFileDialog::getOpenFileName(NULL, QObject::tr("Text file"),
+                                                    qApp->applicationDirPath(), QObject::tr("Files (*.txt)"));
+    QFile file(fileName);
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
+    {
+        qDebug() << "Cannot open file for reading:" << qPrintable(file.errorString());
+        return;
+    }
+
+    QTextStream in(&file);
+    while (!in.atEnd())
+    {
+        QString fileLine = in.readLine();
+        qDebug() << fileLine;
+    }
+    file.close();
+}
+
