@@ -4,6 +4,7 @@
 #include <QLayout>
 #include <QFileDialog>
 #include <QFile>
+#include <QRegularExpression>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -55,8 +56,26 @@ void MainWindow::on_openFile_clicked()
     while (!in.atEnd())
     {
         QString fileLine = in.readLine();
-        qDebug() << fileLine;
+        searchLine(fileLine);
     }
     file.close();
 }
 
+void MainWindow::searchLine(QString line)
+{
+    QRegularExpression re(R"(\[(\d+\.\d+)\].*?master offset\s+(-?\d+).*?freq\s+([+-]?\d+).*?path delay\s+(\d+))");
+
+    QRegularExpressionMatch match = re.match(line);
+
+    if (match.hasMatch()) {
+        QString x = match.captured(1);
+        QString y1 = match.captured(2);
+        QString y2 = match.captured(3);
+        QString y3 = match.captured(4);
+
+        qDebug() << "x:" << x
+                 << ", y1:" << y1
+                 << ", y2:" << y2
+                 << ", y3:" << y3;
+    }
+}

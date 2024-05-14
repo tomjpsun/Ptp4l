@@ -18,6 +18,7 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
     QChartView* initChartView();
+    void searchLine(QString line);
 private slots:
     void on_openFile_clicked();
 
