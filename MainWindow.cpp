@@ -120,6 +120,7 @@ void MainWindow::addSeriesToChart(QChartView* chartView, QList<Ptp4Data> &data, 
     }
 
     QChart *chart = chartView->chart();
+    chart->removeAllSeries();
     chart->addSeries(series);
     chart->createDefaultAxes();
 }
@@ -131,3 +132,15 @@ void MainWindow::draw(QList<Ptp4Data>& table)
     addSeriesToChart(chartViewy2, table, 2);
     addSeriesToChart(chartViewy3, table, 3);
 }
+
+void MainWindow::on_redraw_clicked()
+{
+    QList<Ptp4Data> table;
+    for (const Ptp4Data &pt : originalData) {
+        if (pt.x >= ui->xMin->text().toDouble() && pt.x <= ui->xMax->text().toDouble()) {
+            table.append(pt);
+        }
+    }
+    draw(table);
+}
+

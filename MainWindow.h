@@ -33,6 +33,8 @@ public:
 private slots:
     void on_openFile_clicked();
 
+    void on_redraw_clicked();
+
 private:
     Ui::MainWindow *ui;
     QChartView* chartViewy1;
