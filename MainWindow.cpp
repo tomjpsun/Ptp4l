@@ -67,13 +67,12 @@ void MainWindow::on_openFile_clicked()
     if (table.size() == 0) {
         return;
     }
+    originalData = table;
     float xMax = table[table.size() - 1].x;
     float xMin = table[0].x;
     ui->xMax->setText(QString::number(xMax));
     ui->xMin->setText(QString::number(xMin));
-    addSeriesToChart(chartViewy1, table, 1);
-    addSeriesToChart(chartViewy2, table, 2);
-    addSeriesToChart(chartViewy3, table, 3);
+    draw(table);
 }
 
 void MainWindow::searchLine(QString line, QList<Ptp4Data> &table)
@@ -123,4 +122,12 @@ void MainWindow::addSeriesToChart(QChartView* chartView, QList<Ptp4Data> &data, 
     QChart *chart = chartView->chart();
     chart->addSeries(series);
     chart->createDefaultAxes();
+}
+
+
+void MainWindow::draw(QList<Ptp4Data>& table)
+{
+    addSeriesToChart(chartViewy1, table, 1);
+    addSeriesToChart(chartViewy2, table, 2);
+    addSeriesToChart(chartViewy3, table, 3);
 }
