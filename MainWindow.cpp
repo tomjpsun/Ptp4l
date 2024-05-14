@@ -55,20 +55,28 @@ void MainWindow::on_openFile_clicked()
     }
 
     QTextStream in(&file);
-    table.clear();
+    QList<Ptp4Data> table;
+
     while (!in.atEnd())
     {
         QString fileLine = in.readLine();
-        searchLine(fileLine);
+        searchLine(fileLine, table);
     }
     qDebug() << "table size:" << table.size();
     file.close();
+    if (table.size() == 0) {
+        return;
+    }
+    float xMax = table[table.size() - 1].x;
+    float xMin = table[0].x;
+    ui->xMax->setText(QString::number(xMax));
+    ui->xMin->setText(QString::number(xMin));
     addSeriesToChart(chartViewy1, table, 1);
     addSeriesToChart(chartViewy2, table, 2);
     addSeriesToChart(chartViewy3, table, 3);
 }
 
-void MainWindow::searchLine(QString line)
+void MainWindow::searchLine(QString line, QList<Ptp4Data> &table)
 {
     QRegularExpression re(R"(\[(\d+\.\d+)\].*?master offset\s+(-?\d+).*?freq\s+([+-]?\d+).*?path delay\s+(\d+))");
 

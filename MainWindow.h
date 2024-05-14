@@ -27,7 +27,7 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
     QChartView* initChartView();
-    void searchLine(QString line);
+    void searchLine(QString line, QList<Ptp4Data> &table);
     void addSeriesToChart(QChartView* chartView, QList<Ptp4Data> &data, int yIndex);
 private slots:
     void on_openFile_clicked();
@@ -37,6 +37,5 @@ private:
     QChartView* chartViewy1;
     QChartView* chartViewy2;
     QChartView* chartViewy3;
-    QList<Ptp4Data> table;
 };
 #endif // MAINWINDOW_H
