@@ -120,12 +120,7 @@ void MainWindow::addSeriesToChart(MyChartView* chartView, QList<Ptp4Data> &data,
         }
     }
 
-    QChart *chart = chartView->chart();
-    chart->removeAllSeries();
-    chart->addSeries(series);
-    chart->createDefaultAxes();
-    // connect series to clicked signal
-    connect(series, &QLineSeries::clicked, chartView, &MyChartView::handleClickedPoint);
+    chartView->addSeries(series);
 }
 
 

@@ -3,6 +3,7 @@
 
 #include <QChartView>
 #include <QObject>
+#include <QLineSeries>
 
 class MyChartView : public QChartView
 {
@@ -10,6 +11,8 @@ class MyChartView : public QChartView
 public:
     MyChartView(QWidget *parent = nullptr): QChartView(parent) {}
     void handleClickedPoint(const QPointF &point);
+    void addSeries(QLineSeries *series);
+    QLineSeries* series;
 };
 
 #endif // MYCHARTVIEW_H
