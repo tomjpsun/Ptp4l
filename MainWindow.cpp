@@ -6,6 +6,7 @@
 #include <QFile>
 #include <QRegularExpression>
 #include <QTextStream>
+#include <QLineSeries>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -62,6 +63,9 @@ void MainWindow::on_openFile_clicked()
     }
     qDebug() << "table size:" << table.size();
     file.close();
+    addSeriesToChart(chartViewy1, table, 1);
+    addSeriesToChart(chartViewy2, table, 2);
+    addSeriesToChart(chartViewy3, table, 3);
 }
 
 void MainWindow::searchLine(QString line)
@@ -87,4 +91,28 @@ void MainWindow::searchLine(QString line)
         data.y3 = y3.toDouble();
         table.append(data);
     }
+}
+
+
+void MainWindow::addSeriesToChart(QChartView* chartView, QList<Ptp4Data> &data, int yIndex)
+{
+    QLineSeries *series = new QLineSeries();
+
+    for (const Ptp4Data &pt : data) {
+        switch (yIndex) {
+        case 1:
+            series->append(pt.x, pt.y1);
+            break;
+        case 2:
+            series->append(pt.x, pt.y2);
+            break;
+        case 3:
+            series->append(pt.x, pt.y3);
+            break;
+        }
+    }
+
+    QChart *chart = chartView->chart();
+    chart->addSeries(series);
+    chart->createDefaultAxes();
 }

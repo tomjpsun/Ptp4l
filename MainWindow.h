@@ -28,6 +28,7 @@ public:
     ~MainWindow();
     QChartView* initChartView();
     void searchLine(QString line);
+    void addSeriesToChart(QChartView* chartView, QList<Ptp4Data> &data, int yIndex);
 private slots:
     void on_openFile_clicked();
 
