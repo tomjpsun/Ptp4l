@@ -5,6 +5,10 @@
 #include <QObject>
 #include <QLineSeries>
 
+template <typename T> int sgn(T val) {
+    return (T(0) < val) - (val < T(0));
+}
+
 class MyChartView : public QChartView
 {
     Q_OBJECT

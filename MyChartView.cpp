@@ -9,8 +9,8 @@ void MyChartView::handleClickedPoint(const QPointF &p)
     // find nearest x to p.x
     int index = 0;
     for (index = 0; index < points.size() - 1; index++) {
-        if ((points[index].x() - p.x()) *
-            (points[index+1].x() - p.x()) <= 0) {
+        if ( sgn(points[index].x() - p.x()) !=
+             sgn(points[index+1].x() - p.x()) ) {
             break;
         }
     }
