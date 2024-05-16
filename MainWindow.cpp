@@ -15,6 +15,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     ui->frame->setLayout(new QVBoxLayout());
+    ui->labelSigma->setText(QString::fromUtf8("\u03C3"));
     // 將 chartView 加入 frame 物件
     chartViewy1 = initChartView();
     ui->frame->layout()->addWidget(chartViewy1);
@@ -75,9 +76,7 @@ void MainWindow::on_openFile_clicked()
     // show original range
     ui->xBegin->setText(QString::number(xMin));
     ui->xEnd->setText(QString::number(xMax));
-    // show current range
-    ui->xMin->setText(QString::number(xMin));
-    ui->xMax->setText(QString::number(xMax));
+    ui->total->setText(QString::number(table.size()));
 
     redraw(table);
     updateStatus(table);
@@ -157,10 +156,23 @@ void MainWindow::updateStatus(QList<Ptp4Data>& table)
         return;
     }
     // calculate mean
-    float sum = 0;
+    double sum = 0;
     for (const Ptp4Data &pt : table) {
         sum += pt.y1;
     }
+    double mean = sum / table.size();
+    // calculate variance
+    double squareSum = 0;
+    for (const Ptp4Data &pt : table) {
+        squareSum += (pt.y1 - mean) * (pt.y1 - mean);
+    }
+    double variance = squareSum / table.size();
+
     ui->y1Mean->setText(QString::number(sum / table.size()));
+    ui->y1Variance->setText(QString::number(variance));
+    // show current range
+    ui->xMin->setText(QString::number(table[0].x));
+    ui->xMax->setText(QString::number(table[table.size() - 1].x));
+    ui->size->setText(QString::number(table.size()));
 }
 

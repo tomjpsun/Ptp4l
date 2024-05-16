@@ -24,20 +24,6 @@
        <enum>QFrame::Raised</enum>
       </property>
       <layout class="QGridLayout" name="gridLayout">
-       <item row="2" column="6">
-        <widget class="QLabel" name="label_5">
-         <property name="text">
-          <string>Average</string>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="7">
-        <widget class="QLabel" name="y1Mean">
-         <property name="text">
-          <string>0.0</string>
-         </property>
-        </widget>
-       </item>
        <item row="0" column="0">
         <widget class="QPushButton" name="openFile">
          <property name="text">
@@ -45,10 +31,48 @@
          </property>
         </widget>
        </item>
-       <item row="1" column="0">
-        <widget class="QLabel" name="label_3">
+       <item row="3" column="4">
+        <widget class="QLabel" name="y1Variance">
          <property name="text">
-          <string>X Begin</string>
+          <string>0.0</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="2">
+        <widget class="QLineEdit" name="xMin">
+         <property name="maximumSize">
+          <size>
+           <width>120</width>
+           <height>16777215</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="2">
+        <widget class="QLabel" name="y1Mean">
+         <property name="text">
+          <string>0.0</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="2">
+        <widget class="QPushButton" name="redraw">
+         <property name="text">
+          <string>ReDraw</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="3">
+        <widget class="QLabel" name="label_4">
+         <property name="text">
+          <string>X End</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="3">
+        <widget class="QLabel" name="label_2">
+         <property name="text">
+          <string>X Max </string>
          </property>
         </widget>
        </item>
@@ -59,10 +83,10 @@
          </property>
         </widget>
        </item>
-       <item row="1" column="3">
-        <widget class="QLabel" name="label_4">
+       <item row="1" column="5">
+        <widget class="QLabel" name="label_6">
          <property name="text">
-          <string>X End</string>
+          <string>Total</string>
          </property>
         </widget>
        </item>
@@ -80,20 +104,24 @@
          </property>
         </widget>
        </item>
-       <item row="2" column="2">
-        <widget class="QLineEdit" name="xMin">
-         <property name="maximumSize">
-          <size>
-           <width>120</width>
-           <height>16777215</height>
-          </size>
+       <item row="3" column="3">
+        <widget class="QLabel" name="labelSigma">
+         <property name="text">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Sigma&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
         </widget>
        </item>
-       <item row="2" column="3">
-        <widget class="QLabel" name="label_2">
+       <item row="1" column="0">
+        <widget class="QLabel" name="label_3">
          <property name="text">
-          <string>X Max </string>
+          <string>X Begin</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0">
+        <widget class="QLabel" name="label_5">
+         <property name="text">
+          <string>Average</string>
          </property>
         </widget>
        </item>
@@ -107,10 +135,24 @@
          </property>
         </widget>
        </item>
-       <item row="0" column="2">
-        <widget class="QPushButton" name="redraw">
+       <item row="1" column="6">
+        <widget class="QLabel" name="total">
          <property name="text">
-          <string>ReDraw</string>
+          <string>0</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="5">
+        <widget class="QLabel" name="label_7">
+         <property name="text">
+          <string>Sub Total</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="6">
+        <widget class="QLabel" name="size">
+         <property name="text">
+          <string>0</string>
          </property>
         </widget>
        </item>
