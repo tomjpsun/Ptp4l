@@ -30,7 +30,8 @@ public:
     MyChartView* initChartView();
     void searchLine(QString line, QList<Ptp4Data> &table);
     void addSeriesToChart(MyChartView* chartView, QList<Ptp4Data> &data, int yIndex);
-    void draw(QList<Ptp4Data>& table);
+    void redraw(QList<Ptp4Data>& table);
+    void updateStatus(QList<Ptp4Data>& table);
 private slots:
     void on_openFile_clicked();
     void on_redraw_clicked();

@@ -71,9 +71,16 @@ void MainWindow::on_openFile_clicked()
     originalData = table;
     float xMax = table[table.size() - 1].x;
     float xMin = table[0].x;
-    ui->xMax->setText(QString::number(xMax));
+
+    // show original range
+    ui->xBegin->setText(QString::number(xMin));
+    ui->xEnd->setText(QString::number(xMax));
+    // show current range
     ui->xMin->setText(QString::number(xMin));
-    draw(table);
+    ui->xMax->setText(QString::number(xMax));
+
+    redraw(table);
+    updateStatus(table);
 }
 
 void MainWindow::searchLine(QString line, QList<Ptp4Data> &table)
@@ -120,11 +127,11 @@ void MainWindow::addSeriesToChart(MyChartView* chartView, QList<Ptp4Data> &data,
         }
     }
 
-    chartView->addSeries(series);
+    chartView->plot(series);
 }
 
 
-void MainWindow::draw(QList<Ptp4Data>& table)
+void MainWindow::redraw(QList<Ptp4Data>& table)
 {
     addSeriesToChart(chartViewy1, table, 1);
     addSeriesToChart(chartViewy2, table, 2);
@@ -139,7 +146,21 @@ void MainWindow::on_redraw_clicked()
             table.append(pt);
         }
     }
-    draw(table);
+
+    redraw(table);
+    updateStatus(table);
 }
 
+void MainWindow::updateStatus(QList<Ptp4Data>& table)
+{
+    if (table.size() == 0) {
+        return;
+    }
+    // calculate mean
+    float sum = 0;
+    for (const Ptp4Data &pt : table) {
+        sum += pt.y1;
+    }
+    ui->y1Mean->setText(QString::number(sum / table.size()));
+}
 

@@ -15,7 +15,7 @@ class MyChartView : public QChartView
 public:
     MyChartView(QWidget *parent = nullptr): QChartView(parent) {}
     void handleClickedPoint(const QPointF &point);
-    void addSeries(QLineSeries *series);
+    void plot(QLineSeries *series);
     QLineSeries* series;
 };
 

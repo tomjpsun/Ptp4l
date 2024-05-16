@@ -34,7 +34,7 @@ void MyChartView::handleClickedPoint(const QPointF &p)
                                   3);
 }
 
-void MyChartView::addSeries(QLineSeries* series_)
+void MyChartView::plot(QLineSeries* series_)
 {
     series = series_;
     QChart *chart = this->chart();
