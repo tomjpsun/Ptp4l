@@ -59,9 +59,17 @@ void MainWindow::on_openFile_clicked()
     QTextStream in(&file);
     QList<Ptp4Data> table;
 
+    QRegularExpression re(R"(ptp4l\[.*\].*\s+(UNCALIBRATED to SLAVE).*)");
+    bool fountAnchor = false;
     while (!in.atEnd())
     {
         QString fileLine = in.readLine();
+        if (!fountAnchor) {
+            if (re.match(fileLine).hasMatch()) {
+                fountAnchor = true;
+            }
+            continue;
+        }
         searchLine(fileLine, table);
     }
     qDebug() << "table size:" << table.size();

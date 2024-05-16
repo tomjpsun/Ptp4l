@@ -31,7 +31,7 @@ void MyChartView::handleClickedPoint(const QPointF &p)
                                   true);
     series->setPointConfiguration(index,
                                   QXYSeries::PointConfiguration::Size,
-                                  3);
+                                  4);
 }
 
 void MyChartView::plot(QLineSeries* series_)
