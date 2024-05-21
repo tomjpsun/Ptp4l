@@ -1,0 +1,8 @@
+<Installer>
+    <Name>Ptp4l</Name>
+    <Version>1.0.0</Version>
+    <Title>Ptp4l Installer</Title>
+    <Publisher>DAVICOM SW Team</Publisher>
+    <StartMenuDir>Ptp4l</StartMenuDir>
+    <TargetDir>@HomeDir@/InstallationDirectory</TargetDir>
+</Installer>

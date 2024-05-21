@@ -1,0 +1,7 @@
+<Package>
+    <DisplayName>Ptp4l</DisplayName>
+    <Description>This is the Ptp4l application.</Description>
+    <Version>1.0.0</Version>
+    <ReleaseDate>2024-05-21</ReleaseDate>
+    <Default>true</Default>
+</Package>
